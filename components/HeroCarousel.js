@@ -8,20 +8,26 @@ import { useState, useEffect } from 'react';
  */
 export default function HeroCarousel({ slides }) {
   const [index, setIndex] = useState(0);
+  const safeSlides = Array.isArray(slides) ? slides : [];
+  const slideCount = safeSlides.length;
 
   // Rotate through slides every 5 seconds
   useEffect(() => {
+    if (slideCount <= 1) {
+      setIndex(0);
+      return;
+    }
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length);
+      setIndex((i) => (i + 1) % slideCount);
     }, 5000);
     return () => clearInterval(id);
-  }, [slides.length]);
+  }, [slideCount]);
 
-  if (!slides || slides.length === 0) return null;
+  if (slideCount === 0) return null;
 
   return (
     <div className="relative h-96 sm:h-[500px] w-full overflow-hidden">
-      {slides.map((slide, i) => (
+      {safeSlides.map((slide, i) => (
         <div
           key={i}
           className={
@@ -30,7 +36,7 @@ export default function HeroCarousel({ slides }) {
         >
           <img
             src={slide.image}
-            alt={slide.title}
+            alt={slide.title || `Slide ${i + 1}`}
             className="object-cover w-full h-full"
           />
           <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center text-white p-4">
