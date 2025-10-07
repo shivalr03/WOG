@@ -1,0 +1,94 @@
+[
+  {
+    "slug": "tokyo-urban-explorer",
+    "name": "Tokyo Urban Explorer",
+    "destination": "Tokyo, Japan",
+    "category": "City",
+    "price": 1200,
+    "duration": "5 days",
+    "description": "Experience the vibrant energy of Tokyo with this guided tour covering Shibuya, Shinjuku and historic Asakusa. Immerse yourself in modern culture while sampling world‑class cuisine and uncovering centuries of tradition.",
+    "itinerary": [
+      "Day 1: Arrival and Shibuya Crossing",
+      "Day 2: Tsukiji Market and Ginza",
+      "Day 3: Asakusa and Senso‑ji Temple",
+      "Day 4: Shinjuku Gyoen and Harajuku",
+      "Day 5: Departure"
+    ],
+    "inclusions": ["Accommodation", "Breakfast", "City Tour"],
+    "exclusions": ["Flights", "Travel Insurance"],
+    "images": ["/images/hero1.jpg", "/images/hero2.jpg", "/images/hero3.jpg"],
+    "popularity": 82,
+    "isFeatured": true
+  },
+  {
+    "slug": "bali-beach-retreat",
+    "name": "Bali Beach Retreat",
+    "destination": "Bali, Indonesia",
+    "category": "Beach",
+    "price": 950,
+    "duration": "7 days",
+    "description": "Soak up the sun and relax on Bali's pristine beaches. This retreat combines yoga sessions, cultural excursions to Ubud and Uluwatu and plenty of free time to unwind by the ocean.",
+    "itinerary": [
+      "Day 1: Arrival and beach welcome dinner",
+      "Day 2: Morning yoga and Ubud rice terraces",
+      "Day 3: Water sports in Nusa Dua",
+      "Day 4: Cultural tour of Uluwatu Temple",
+      "Day 5: Free day at leisure",
+      "Day 6: Spa day and cooking class",
+      "Day 7: Departure"
+    ],
+    "inclusions": ["Accommodation", "Breakfast", "Airport Transfers"],
+    "exclusions": ["International Flights"],
+    "images": ["/images/hero2.jpg", "/images/hero3.jpg", "/images/hero1.jpg"],
+    "popularity": 75,
+    "isFeatured": true
+  },
+  {
+    "slug": "paris-culinary-journey",
+    "name": "Paris Culinary Journey",
+    "destination": "Paris, France",
+    "category": "Culinary",
+    "price": 1500,
+    "duration": "6 days",
+    "description": "For the food lover in you, this gastronomic adventure explores the city's legendary cafés, patisseries and bistros. Learn to bake croissants, sample fine wines and discover hidden food markets.",
+    "itinerary": [
+      "Day 1: Arrival and welcome dinner",
+      "Day 2: Baking class and pastry tour",
+      "Day 3: Guided market exploration",
+      "Day 4: Cheese and wine pairing",
+      "Day 5: Free day to explore Paris",
+      "Day 6: Departure"
+    ],
+    "inclusions": ["Accommodation", "Breakfast", "Cooking Classes"],
+    "exclusions": ["Flights", "Personal Expenses"],
+    "images": ["/images/hero3.jpg", "/images/hero1.jpg", "/images/hero2.jpg"],
+    "popularity": 90,
+    "isFeatured": false
+  },
+  {
+    "slug": "himalayan-adventure-trek",
+    "name": "Himalayan Adventure Trek",
+    "destination": "Himachal Pradesh, India",
+    "category": "Adventure",
+    "price": 800,
+    "duration": "10 days",
+    "description": "Challenge yourself with a breathtaking trek through the Himalayas. This adventure takes you past glacial lakes, alpine meadows and remote mountain villages with expert guides.",
+    "itinerary": [
+      "Day 1: Arrival in Manali",
+      "Day 2: Acclimatisation and local sightseeing",
+      "Day 3: Trek to Solang Valley",
+      "Day 4: Trek to Beas Kund",
+      "Day 5: Camp at high altitude",
+      "Day 6: Summit day",
+      "Day 7: Descent to Manali",
+      "Day 8: Relaxation day",
+      "Day 9: Explore Old Manali",
+      "Day 10: Departure"
+    ],
+    "inclusions": ["Guide", "Meals on trek", "Camping Equipment"],
+    "exclusions": ["Transport to Manali", "Porters"],
+    "images": ["/images/hero1.jpg", "/images/hero3.jpg", "/images/hero2.jpg"],
+    "popularity": 65,
+    "isFeatured": false
+  }
+]

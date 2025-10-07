@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Global styles file
+ *
+ * Tailwind's layers are imported at the top. You can place any
+ * additional global CSS here. Use this file sparingly, and rely
+ * primarily on Tailwind utility classes in the components themselves.
+ */
