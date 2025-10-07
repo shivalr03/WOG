@@ -11,20 +11,25 @@ import FilterSortBar from '../../components/FilterSortBar';
  * from a static JSON file.
  */
 export default function CollectionsPage() {
-  const { data: packages = [], status } = useTravelPackages();
+  const { data: packages = [], status, error } = useTravelPackages();
   const [filterDest, setFilterDest] = useState('');
   const [sort, setSort] = useState('popularity');
 
   // Extract unique destinations for the filter dropdown
   const destinations = useMemo(() => {
     const set = new Set();
-    packages.forEach((p) => set.add(p.destination));
+    packages.forEach((p) => {
+      if (p?.destination) {
+        set.add(p.destination);
+      }
+    });
     return Array.from(set);
   }, [packages]);
 
   // Apply the selected destination filter
   const filtered = useMemo(() => {
     return packages.filter((pkg) => {
+      if (!pkg) return false;
       return filterDest ? pkg.destination === filterDest : true;
     });
   }, [packages, filterDest]);
@@ -32,14 +37,17 @@ export default function CollectionsPage() {
   // Apply sorting logic based on selected sort option
   const sorted = useMemo(() => {
     const arr = [...filtered];
+    const priceForLow = (pkg) => (typeof pkg?.price === 'number' ? pkg.price : Number.MAX_SAFE_INTEGER);
+    const priceForHigh = (pkg) => (typeof pkg?.price === 'number' ? pkg.price : Number.MIN_SAFE_INTEGER);
+    const popularityScore = (pkg) => (typeof pkg?.popularity === 'number' ? pkg.popularity : Number.MIN_SAFE_INTEGER);
     switch (sort) {
       case 'priceLowHigh':
-        return arr.sort((a, b) => a.price - b.price);
+        return arr.sort((a, b) => priceForLow(a) - priceForLow(b));
       case 'priceHighLow':
-        return arr.sort((a, b) => b.price - a.price);
+        return arr.sort((a, b) => priceForHigh(b) - priceForHigh(a));
       case 'popularity':
       default:
-        return arr.sort((a, b) => b.popularity - a.popularity);
+        return arr.sort((a, b) => popularityScore(b) - popularityScore(a));
     }
   }, [filtered, sort]);
 
@@ -65,8 +73,12 @@ export default function CollectionsPage() {
             onFilterChange={setFilterDest}
             onSortChange={setSort}
           />
-          {status === 'loading' ? (
+          {status === 'pending' ? (
             <p>Loading packages…</p>
+          ) : error ? (
+            <p className="text-red-600">We couldn't load the travel packages. Please refresh to try again.</p>
+          ) : sorted.length === 0 ? (
+            <p>No travel packages match your filters. Try adjusting your search.</p>
           ) : (
             <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
               {sorted.map((pkg) => (

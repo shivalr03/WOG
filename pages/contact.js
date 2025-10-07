@@ -12,7 +12,8 @@ import { usePackageBySlug } from '../hooks/useTravelPackages';
 export default function ContactPage() {
   const router = useRouter();
   const { package: packageSlug } = router.query;
-  const { data: pkg } = usePackageBySlug(packageSlug);
+  const { data: pkg, status, error } = usePackageBySlug(packageSlug);
+  const priceLabel = typeof pkg?.price === 'number' ? `₹${pkg.price.toLocaleString()}` : 'Pricing available on request';
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -45,13 +46,19 @@ export default function ContactPage() {
           <h1 className="text-3xl font-semibold mb-4 text-brand-blue">
             {pkg ? 'Book Your Trip' : 'Contact Us'}
           </h1>
-          {pkg && (
+          {status === 'pending' && packageSlug && (
+            <p className="mb-4 text-gray-600">Loading package details…</p>
+          )}
+          {error && (
+            <p className="mb-4 text-red-600">Unable to load the selected package. You can still reach out using the form below.</p>
+          )}
+          {pkg && !error && (
             <div className="mb-6 p-4 border-l-4 border-brand-red bg-white shadow rounded">
               <h2 className="text-xl font-semibold mb-2 text-brand-red">
                 You are booking: {pkg.name}
               </h2>
               <p className="text-gray-600">
-                Destination: {pkg.destination} | Duration: {pkg.duration} | Price: ₹{pkg.price.toLocaleString()}
+                Destination: {pkg.destination} | Duration: {pkg.duration} | Price: {priceLabel}
               </p>
             </div>
           )}

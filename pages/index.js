@@ -8,7 +8,7 @@ import { faPersonWalking, faUsers, faHiking, faUtensils } from '@fortawesome/fre
 import Link from 'next/link';
 
 export default function Home() {
-  const { data: packages = [], status } = useTravelPackages();
+  const { data: packages = [], status, error } = useTravelPackages();
   // Pick featured packages; fall back to first three if none flagged
   const featured = packages.filter((p) => p.isFeatured).slice(0, 3);
   const fallbackFeatured = packages.slice(0, 3);
@@ -75,8 +75,10 @@ export default function Home() {
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-semibold mb-8 text-brand-blue">Featured Tours</h2>
-          {status === 'loading' ? (
+          {status === 'pending' ? (
             <p>Loading packages…</p>
+          ) : error ? (
+            <p className="text-red-600">Unable to load packages right now. Please try again later.</p>
           ) : (
             <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
               {(featured.length > 0 ? featured : fallbackFeatured).map((pkg) => (

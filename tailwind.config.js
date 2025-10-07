@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors');
-
 /**
  * Tailwind CSS configuration
  *
